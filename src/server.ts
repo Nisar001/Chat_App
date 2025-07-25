@@ -66,6 +66,7 @@ io.on('connection', (socket) => {
       createdAt: new Date()
     };
     await Room.findByIdAndUpdate(roomId, { $push: { messages: message } });
+    //io.to(roomId).emit('new-message', { roomId, message });
     socket.to(roomId).emit('new-message', { roomId, message });
   });
 
